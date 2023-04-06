@@ -54,19 +54,10 @@
       </div>
 
       <!-- tasks list -->
-      <ul class="task-list">
-        <!-- <li class="task-item">
-          <div class="item-text">
-            <i class="fa-regular fa-circle"></i>
-            <i class="fa-regular fa-circle-check"></i>
-            fdhfdfdchfdchf
-          </div>
-          <i class="fa-solid fa-trash-can"></i>
-        </li> -->
-      </ul>
+      <ul class="task-list" id="task-list-el"></ul>
 
       <!-- main -->
-      <div class="title-wrapper">
+      <div class="title-wrapper" id="title-wrapper">
         <img
           src="images/calender-image.svg"
           width="130"
@@ -82,8 +73,8 @@
       </div>
 
       <!-- input -->
-      <form class="input-wrapper" title="Add a task in 'My Day'">
-        <i class="fa-solid fa-plus"></i>
+      <form class="input-wrapper" title="Add a task in 'My Day'" id="from">
+        <i class="fa-solid fa-plus" id="input-icon-el"></i>
         <input
           type="text"
           placeholder=" Add a task"
@@ -94,11 +85,9 @@
         />
       </form>
 
-
-
-
-      
+      <span id="msg"></span>
     </div>
     <script src="js/script.js"></script>
   </body>
 </html>
+<!-- <i class="fa-regular fa-circle-check"></i> -->
