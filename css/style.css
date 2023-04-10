@@ -22,7 +22,6 @@
   --white-2: hsl(0, 0%, 98%);
   --white-1: hsl(0, 0%, 100%);
   --black: hsl(0, 0%, 0%);
-  --hue: 227;
   --theme-bg: linear-gradient(
     to bottom,
     hsl(var(--hue, 227), 40%, 50%),
@@ -219,10 +218,16 @@ li {
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
 }
+.theme-btn-group div {
+  cursor: pointer;
+}
 #msg {
   color: rgb(203, 0, 0);
   margin-top: 10px;
 }
 .check {
   text-decoration: line-through;
+}
+.outline {
+  border: 2px solid black;
 }
