@@ -1,3 +1,38 @@
+function getFormattedDate(today) {
+  var week = new Array(
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  );
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  var todayDay = week[today.getDay()];
+  var todayDate = today.getDate();
+  var todayMonth = monthNames[today.getMonth()];
+
+  return ` ${todayDay} , ${todayMonth} ${todayDate}`;
+}
+
+var date = new Date();
+var text = getFormattedDate(date);
+let dateEl = document.getElementById("date-el");
+dateEl.textContent = text;
 // sound setting
 class Sound {
   constructor() {
@@ -132,55 +167,51 @@ const displayLogo = () => {
 
 let themeData = [
   {
-    color: "blue",
-    name: "blue",
+    name: "linear-gradient(-225deg, #A115B2 0%, #D81572 52%, #FF0066 100%)",
   },
   {
-    color: "purple",
-    name: "purple",
+    name: "linear-gradient(to top, #fbc27b 0%, #a641ee 100%)",
   },
   {
-    color: "",
-    name: "dark red",
+    name: "linear-gradient(to right, #437b 0%, #38f9d7 100%)",
   },
   {
-    color: "",
-    name: "red",
+    name: "linear-gradient(to top, #0ba360 0%, #3cba92 100%)",
   },
   {
-    color: "",
-    name: "green",
+    name: "linear-gradient(-225deg, #3D4E81 0%, #5753C9 48%, #6E7FF3 100%)",
   },
   {
-    color: "",
-    name: "lightBlue",
+    name: "linear-gradient(to right, #434343 0%, black 100%)",
   },
   {
-    color: "",
-    name: "darkBlue",
+    name: "linear-gradient(to top, #09203f 0%, #537895 100%)",
   },
 ];
-
-localStorage.setItem("themeData", JSON.stringify(themeData));
+let userChoiceBackground;
+let body = document.body;
 const displaySettingData = () => {
   for (let i = 0; i < themeData.length; i++) {
     let theme_btn_group = document.querySelector(".theme-btn-group");
     let themeBtn = document.createElement("div");
     themeBtn.setAttribute("id", themeData[i].name);
-    themeBtn.style.background = themeData[i].color;
-    themeData[i]["choice"] = false;
+    themeBtn.style.background = themeData[i].name;
     themeBtn.addEventListener("click", (e) => {
       document.querySelector("body").style.background = themeData[i].color;
-      let search = themeData.find((x) => x.name === e.target.id);
-      if (search) {
-        themeData[i].choice = true;
-        localStorage.setItem("themeData", JSON.stringify(themeData));
-      }
+      userChoiceBackground = e.target.id;
+      localStorage.setItem("themeData", JSON.stringify(userChoiceBackground));
+      displayBackground();
     });
     theme_btn_group.appendChild(themeBtn);
   }
 };
 
+const displayBackground = () => {
+  if (userChoiceBackground === undefined) {
+  } else {
+    body.style.background = userChoiceBackground;
+  }
+};
 const setting = () => {
   let dropdown_container = document.querySelector(".dropdown-container");
   if (!dropdown_container.classList.contains("active")) {
@@ -192,10 +223,11 @@ const setting = () => {
 
 (() => {
   toDoListData = JSON.parse(localStorage.getItem("data")) || [];
-  themeData = JSON.parse(localStorage.getItem("themeData")) || [];
+  userChoiceBackground = JSON.parse(localStorage.getItem("themeData")) || [];
 
   displayToDoList();
   checkLine();
   displayLogo();
   displaySettingData();
+  displayBackground();
 })();
